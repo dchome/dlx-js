@@ -1,2 +1,2 @@
-# dlx-sdk
-A JavaScript client for accessing the DLX database and API
+# DLX JavaScript SDK
+A JavaScript client for accessing the DLX database and API.
