@@ -1,0 +1,28 @@
+{
+  "name": "dlx-js",
+  "version": "0.1.0",
+  "description": "A JavaScript client for accessing the API for the DLX database.",
+  "contributors": [
+    {
+      "name": "Daniel W. Hieber",
+      "url": "http://danielhieber.com"
+    }
+  ],
+  "homepage": "https://github.com/digitallinguistics/dlx-js#readme",
+  "bugs": {
+    "url": "https://github.com/digitallinguistics/dlx-js/issues"
+  },
+  "keywords": [
+    "linguistics",
+    "Digital Linguistics",
+    "DLX",
+    "University of California, Santa Barbara",
+    "language documentation"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/digitallinguistics/dlx-js.git"
+  },
+  "main": "dlx.js",
+  "license": "MIT"
+}
