@@ -23,6 +23,6 @@
     "type": "git",
     "url": "git+https://github.com/digitallinguistics/dlx-js.git"
   },
-  "main": "dlx.js",
+  "main": "api.js",
   "license": "MIT"
 }
