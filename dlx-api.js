@@ -1,1 +1,1 @@
-var dlx = {};
+var dlxApi = {};
