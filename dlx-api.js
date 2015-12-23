@@ -1,1 +1,7 @@
-var dlxApi = {};
+var dlxApi = {
+
+  addTexts (texts) {},
+
+  getTexts (ids) {},
+
+};
