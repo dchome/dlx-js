@@ -2,10 +2,6 @@ var dlxApi = {
   
   /*bundle methods*/
   
-  addBundle (bundle) {},
-  
-  addBundles (bundles) {},
-  
   deleteBundle (id) {},
   
   deleteBundles (ids) {},
@@ -14,12 +10,12 @@ var dlxApi = {
   
   getBundles (ids) {},
   
+  upsertBundle (bundle) {},
+  
+  upsertBundles (bundles) {},
+  
   /*item methods*/
-  
-  addItemsToBundle (items, bundleID) {},
-  
-  addItemToBundle (item, bundleID) {},
-  
+
   deleteItemFromBundle (id, bundleID) {},
   
   deleteItemsFromBundle (ids, bundleID) {},
@@ -28,20 +24,20 @@ var dlxApi = {
   
   getItemsFromBundle (ids, bundleID) {},
   
-  /*lexicon methods*/
+  upsertItemsToBundle (items, bundleID) {},
   
-  addLexicon (lexi) {},
+  upsertItemToBundle (item, bundleID) {},
+  
+  /*lexicon methods*/
   
   deleteLexicon (id) {},
   
   getLexicon (id) {},
   
+  upsertLexicon (lexi) {},
+  
   /*lexicon entry methods*/
-  
-  addEntriesToLexicon (entries, lexiID) {},
-  
-  addEntryToLexicon (entry, lexiID) {},
-  
+
   deleteEntriesFromLexicon (ids, lexiID) {},
   
   deleteEntryFromLexicon (id, lexiID) {},
@@ -50,9 +46,13 @@ var dlxApi = {
   
   getEntryFromLexicon (id, lexiID) {},
   
+  upsertEntriesToLexicon (entries, lexiID) {},
+  
+  upsertEntryToLexicon (entry, lexiID) {},
+  
   /*permission methods*/
   
-  addPermission (permission, user) {}, /* not sure what exactly is meant by permissions and this example method,
+  upsertPermission (permission, user) {}, /* not sure what exactly is meant by permissions and this example method,
     I assume it will need these two parameters*/
   
   /*phrase methods*/
@@ -62,11 +62,7 @@ var dlxApi = {
   getPhrasesFromText (ids, textID) {},
   
   /*text methods*/
-  
-  addText (text) {},
-  
-  addTexts (texts) {},
-  
+
   deleteText (id) {},
   
   deleteTexts (ids) {},
@@ -74,5 +70,9 @@ var dlxApi = {
   getText (id) {},
   
   getTexts (ids) {}
+
+  upsertText (text) {},
+  
+  upsertTexts (texts) {},
   
 };
