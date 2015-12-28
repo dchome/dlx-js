@@ -1,91 +1,78 @@
 var dlxApi = {
-
-  /*text methods*/
-  
-  addTexts (texts) {},
-
-  getTexts (ids) {},
-  
-  deleteTexts (ids) {},
-
-  addText (text) {},
-  
-  getText (id) {},
-  
-  deleteText (id) {},
-  
-  /*phrase methods*/
-  
-  addPhrasesToText (phrases, textID) {},
-
-  getPhrasesFromText (ids, textID) {},
-  
-  deletePhrasesFromText (ids, textID) {},
-
-  addPhraseToText (phrase, textID) {},
-  
-  getPhraseFromText (id, textID) {},
-  
-  deletePhraseFromText (id, textID) {},
-  
-  /*lexicon methods*/
-  
-  addLexicons (lexis) {},
-  
-  getLexicons (ids) {},
-  
-  deleteLexicons (ids) {},
-  
-  addLexicon (lexi) {},
-  
-  getLexicon (id) {},
-  
-  deleteLexicon (id) {},
-  
-  /*lexicon entry methods*/
-  
-  addEntriesToLexicon (entries, lexiID) {},
-  
-  getEntriesFromLexicon (ids, lexiID) {},
-  
-  deleteEntriesFromLexicon (ids, lexiID) {},
-  
-  addEntryToLexicon (entry, lexiID) {},
-  
-  getEntryFromLexicon (id, lexiID) {},
-  
-  deleteEntryFromLexicon (id, lexiID) {},
   
   /*bundle methods*/
   
+  addBundle (bundle) {},
+  
   addBundles (bundles) {},
   
-  getBundles (ids) {},
+  deleteBundle (id) {},
   
   deleteBundles (ids) {},
   
-  addBundle (bundle) {},
-  
   getBundle (id) {},
   
-  deleteBundle (id) {},
+  getBundles (ids) {},
   
   /*item methods*/
   
   addItemsToBundle (items, bundleID) {},
   
-  getItemsFromBundle (ids, bundleID) {},
-  
-  deleteItemsFromBundle (ids, bundleID) {},
-  
   addItemToBundle (item, bundleID) {},
-  
-  getItemFromBundle (id, bundleID) {},
   
   deleteItemFromBundle (id, bundleID) {},
   
+  deleteItemsFromBundle (ids, bundleID) {},
+  
+  getItemFromBundle (id, bundleID) {},
+  
+  getItemsFromBundle (ids, bundleID) {},
+  
+  /*lexicon methods*/
+  
+  addLexicon (lexi) {},
+  
+  deleteLexicon (id) {},
+  
+  getLexicon (id) {},
+  
+  /*lexicon entry methods*/
+  
+  addEntriesToLexicon (entries, lexiID) {},
+  
+  addEntryToLexicon (entry, lexiID) {},
+  
+  deleteEntriesFromLexicon (ids, lexiID) {},
+  
+  deleteEntryFromLexicon (id, lexiID) {},
+  
+  getEntriesFromLexicon (ids, lexiID) {},
+  
+  getEntryFromLexicon (id, lexiID) {},
+  
   /*permission methods*/
   
-  addPermission (permission, user) {} /* not sure what exactly is meant by permissions and this example method,
+  addPermission (permission, user) {}, /* not sure what exactly is meant by permissions and this example method,
     I assume it will need these two parameters*/
+  
+  /*phrase methods*/
+
+  getPhraseFromText (id, textID) {},
+  
+  getPhrasesFromText (ids, textID) {},
+  
+  /*text methods*/
+  
+  addText (text) {},
+  
+  addTexts (texts) {},
+  
+  deleteText (id) {},
+  
+  deleteTexts (ids) {},
+  
+  getText (id) {},
+  
+  getTexts (ids) {}
+  
 };
