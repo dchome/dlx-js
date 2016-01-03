@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: dlx-api.js</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: dlx-api.js</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>var dlxApi = {
+
+  /**
+   * settings
+   * @namespace settings
+   */
+  accessToken: '',
+
+  /**
+   * general API methods
+   * @namespace general
+   */
+  authenticate (/* args */) {},
+
+
+  /**
+   * bundle methods
+   * @namespace bundles
+   */
+  addBundleToProject (/* bundleId, projectId */) {},
+
+  addBundlesToProject (/* bundleIds, projectId */) {},
+
+  addItemToBundle (/* itemId, bundleId */) {},
+
+  addItemsToBundle (/* itemIds, bundleId */) {},
+
+  deleteBundle (/* id */) {},
+
+  deleteBundles (/* ids */) {},
+
+  deleteItemFromBundle (/* itemId, bundleId */) {},
+
+  deleteItemsFromBundle (/* itemIds, bundleId */) {},
+
+  getBundle (/* id */) {},
+
+  getBundles (/* ids */) {},
+
+  getItemFromBundle (/* itemId, [bundleId] */) {},
+
+  getItemsFromBundle (/* itemIds, [bundleId] */) {},
+
+  removeBundleFromProject (/* bundleId, projectId */) {},
+
+  removeBundlesFromProject (/* bundleIds, projectId */) {},
+
+  upsertBundle (/* bundle */) {},
+
+  upsertBundles (/* bundles */) {},
+
+
+  /**
+   * language methods
+   * @namespace languages
+   */
+  addLanguage (/* language */) {},
+
+  addLanguageToProject (/* languageId, projectId */) {},
+
+  addLanguagesToProject (/* languageId, projectId */) {},
+
+  getLanguage (/* id */) {},
+
+  getLanguages (/* ids */) {},
+
+  removeLanguageFromProject (/* languageId, projectId */) {},
+
+  removeLanguagesFromProject (/* languageIds, projectId */) {},
+
+
+  /**
+   * lexicon methods
+   * @namespace lexicons
+   */
+  addLexiconToProject (/* lexicon, projectId */) {},
+
+  addLexiconsToProject (/* lexicons, projectId */) {},
+
+  deleteLexicon (/* id */) {},
+
+  deleteLexicons (/* ids */) {},
+
+  deleteLexiconEntry (/* entryId, [lexiconId] */) {},
+
+  deleteLexiconEntries (/* entryIds, [lexiconId] */) {},
+
+  getLexicon (/* id */) {},
+
+  getLexicons (/* ids */) {},
+
+  getLexiconEntry (/* entryId, [lexiconId] */) {},
+
+  getLexiconEntries (/* entryIds, [lexiconId] */) {},
+
+  removeLexiconFromProject (/* lexiconId, projectId */) {},
+
+  removeLexiconsFromProject (/* lexicons, projectId */) {},
+
+  upsertLexicon (/* lexicon */) {},
+
+  upsertLexicons (/* lexicons */) {},
+
+  upsertLexiconEntry (/* entry, lexiconId */) {},
+
+  upsertLexiconEntries (/* entries, lexiconId */) {},
+
+
+  /**
+   * location methods
+   * @namespace locations
+   */
+  addLocationToProject (/* locationId, projectId */) {},
+
+  addLocationsToProject (/* locationIds, projectId */) {},
+
+  deleteLocation (/* id */) {},
+
+  deleteLocations (/* ids */) {},
+
+  getLocation (/* id */) {},
+
+  getLocations (/* ids */) {},
+
+  removeLocationFromProject (/* locationId, projectId */) {},
+
+  removeLocationsFromProject (/* locationIds, projectId */) {},
+
+  upsertLocation (/* location */) {},
+
+  upsertLocations (/* locations */) {},
+
+
+  /**
+   * media methods
+   * @namespace media
+   */
+  addMediaItemToBundle (/* mediaId, bundleId */) {},
+
+  addMediaItemsToBundle (/* mediaIds, bundleId */) {},
+
+  addMediaItemToProject (/* mediaId, projectId */) {},
+
+  addMediaItemsToProject (/* mediaIds, projectId */) {},
+
+  addMediaItemToText (/* mediaId, projectId */) {},
+
+  addMediaItemsToText (/* mediaIds, projectId */) {},
+
+  deleteMediaItem (/* id */) {},
+
+  deleteMediaItems (/* ids */) {},
+
+  getMediaItem (/* id */) {},
+
+  getMediaItems (/* ids */) {},
+
+  removeMediaItemFromBundle (/* mediaId, bundleId */) {},
+
+  removeMediaItemsFromBundle (/* mediaIds, bundleId */) {},
+
+  removeMediaItemFromProject (/* mediaId, projectId */) {},
+
+  removeMediaItemsFromProject (/* mediaIds, projectId */) {},
+
+  removeMediaItemFromText (/* mediaId, textId */) {},
+
+  removeMediaItemsFromText (/* mediaIds, textId */) {},
+
+  upsertMediaItem (/* mediaItem */) {},
+
+  upsertMediaItems (/* mediaItems */) {},
+
+
+  /**
+   * permission methods
+   * @namespace permissions
+   */
+  addPermission (/* user, resource, permissionType */) {},
+
+  addPermissions (/* users, resources, permissionType */) {},
+
+  makePrivate (/* resourceId, options: revokeExisting=false */) {},
+
+  makePublic (/* resourceId */) {},
+
+  removePermission (/* user, resource, permissionType */) {},
+
+  removePermissions (/* users, resources, permissionType */) {},
+
+
+  /**
+   * person methods
+   * @namespace persons
+   */
+  addPersonToProject (/* personId, projectId */) {},
+
+  addPersonsToProject (/* personIds, perojectId */) {},
+
+  deletePerson (/* id */) {},
+
+  deletePersons (/* ids */) {},
+
+  getPerson (/* id */) {},
+
+  getPersons (/* ids */) {},
+
+  removePersonFromProject (/* personId, projectId */) {},
+
+  removePersonsFromProject (/* personIds, projectId */) {},
+
+  upsertPerson (/* person */) {},
+
+  upsertPersons (/* persons */) {},
+
+
+  /**
+   * project methods
+   * @namespace projects
+   */
+  deleteProject (/* id */) {},
+
+  deleteProjects (/* ids */) {},
+
+  getProject (/* id */) {},
+
+  getProjects (/* ids */) {},
+
+  upsertProject (/* project */) {},
+
+  upsertProjects (/* projects */) {},
+
+
+  /**
+   * text methods
+   * @namespace texts
+   */
+  addTextToBundle (/* textId, bundleId */) {},
+
+  addTextsToBundle (/* textIds, bundleId */) {},
+
+  addTextToProject (/* textId, projectId */) {},
+
+  addTextsToProject (/* textIds, projectId */) {},
+
+  deleteText (/* id */) {},
+
+  deleteTexts (/* ids */) {},
+
+  getPhrase (/* phraseId, [textId] */) {},
+
+  getPhrases (/* phraseIds, [textId] */) {},
+
+  getText (/* id */) {},
+
+  getTexts (/* ids */) {},
+
+  removeTextFromBundle (/* textId, bundleId */) {},
+
+  removeTextsFromBundle (/* textIds, bunldeIds */) {},
+
+  removeTextFromProject (/* textId, projectId */) {},
+
+  removeTextsFromProject (/* textIds, projectId */) {},
+
+  upsertText (/* text */) {},
+
+  upsertTexts (/* texts */) {},
+
+};
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Namespaces</h3><ul><li><a href="bundles.html">bundles</a></li><li><a href="general.html">general</a></li><li><a href="languages.html">languages</a></li><li><a href="lexicons.html">lexicons</a></li><li><a href="locations.html">locations</a></li><li><a href="media.html">media</a></li><li><a href="permissions.html">permissions</a></li><li><a href="persons.html">persons</a></li><li><a href="projects.html">projects</a></li><li><a href="settings.html">settings</a></li><li><a href="texts.html">texts</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.4.0</a> on Sun Jan 03 2016 04:53:50 GMT-0500 (Eastern Standard Time)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>
