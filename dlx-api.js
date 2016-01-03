@@ -1,139 +1,270 @@
 var dlxApi = {
-  
-  /*bundle methods*/
-  
-  deleteBundle (id) {},
-  
-  deleteBundles (ids) {},
-  
-  deleteItemFromBundle (id, bundleID) {},
-  
-  deleteItemsFromBundle (ids, bundleID) {},
-  
-  getBundle (id) {},
-  
-  getBundles (ids) {},
-  
-  getItemFromBundle (id, bundleID) {},
-  
-  getItemsFromBundle (ids, bundleID) {},
-  
-  upsertBundle (bundle) {},
-  
-  upsertBundles (bundles) {},
-  
-  upsertItemsToBundle (items, bundleID) {},
-  
-  upsertItemToBundle (item, bundleID) {},
-  
-  /*lexicon methods*/
-  
-  deleteEntriesFromLexicon (ids, lexiID) {},
-  
-  deleteEntryFromLexicon (id, lexiID) {},
-  
-  deleteLexicon (id) {},
-  
-  getEntriesFromLexicon (ids, lexiID) {},
-  
-  getEntryFromLexicon (id, lexiID) {},
-  
-  getLexicon (id) {},
-  
-  upsertEntriesToLexicon (entries, lexiID) {},
-  
-  upsertEntryToLexicon (entry, lexiID) {},
-  
-  upsertLexicon (lexi) {},
-  
-  /*permission methods*/
-  
-  addPermission (user, resource, permissionType) {},
-  
-  addPermissions (users, resources, permissionTypes) {}, /*should this be 
-    permissionType or permissionTypes? Based on your comments it says singular,
-    but I think you meant plural? */
 
-  authenticate () {},
-  
-  deletePermission (user, resource, permissionType) {},
-  
-  deletePermissions (users, resources, permissionType) {},
-  
-  makePrivate (resourceID, revokeExistingPermissions=false) {},
-  
-  makePublic (resourceID),
-  
-  /*project methods*/
-  
-  addBundleToProject (bundID, projID) {},
-  
-  addBundlesToProject (bundIDs, projID) {},
-  
-  addLanguageToProject (langID, projID) {},
-  
-  addLanguagesToProject (langIDs, projID) {},
-  
-  addLexiconToProject (lexiID, projID) {},
-  
-  addLexiconsToProject (lexiIDs, projID) {},
-  
-  addLocationToProject (locaID, projID) {},
-  
-  addLocationsToProject (locaIDs, projID) {},
-  
-  addMediaToProject (mediaID, projID) {},
-  
-  addMediasToProject (mediaIDs, projID) {},
-  
-  addTextToProject (textID, projID) {},
-  
-  addTextsToProject (textIDs, projID) {},
-  
-  removeBundleFromProject (bundID, projID) {},
-  
-  removeBundlesFromProject (bundIDs, projID) {},
-  
-  removeLanguageFromProject (langID, projID) {},
-  
-  removeLanguagesFromProject (langIDs, projID) {},
-  
-  removeLexiconFromProject (lexiID, projID) {},
-  
-  removeLexiconsFromProject (lexiIDs, projID) {},
-  
-  removeLocationFromProject (locaID, projID) {},
-  
-  removeLocationsFromProject (locaIDs, projID) {},
-  
-  removeMediaFromProject (mediaID, projID) {},
-  
-  removeMediasFromProject (mediaIDs, projID) {},
-  
-  removeTextFromProject (textID, projID) {},
-  
-  removeTextsFromProject (textIDs, projID) {},
-  
-  /*properties*/
-  
-  accessToken: "",
-  
-  /*text methods*/
+  /**
+   * settings
+   * @namespace settings
+   */
+  accessToken: '',
 
-  deleteText (id) {},
-  
-  deleteTexts (ids) {},
-  
-  getPhraseFromText (id, textID) {},
-  
-  getPhrasesFromText (ids, textID) {},
-  
-  getText (id) {},
-  
-  getTexts (ids) {},
+  /**
+   * general API methods
+   * @namespace general
+   */
+  authenticate (/* args */) {},
 
-  upsertText (text) {},
-  
-  upsertTexts (texts) {},
-  
+
+  /**
+   * bundle methods
+   * @namespace bundles
+   */
+  addBundleToProject (/* bundleId, projectId */) {},
+
+  addBundlesToProject (/* bundleIds, projectId */) {},
+
+  addItemToBundle (/* itemId, bundleId */) {},
+
+  addItemsToBundle (/* itemIds, bundleId */) {},
+
+  deleteBundle (/* id */) {},
+
+  deleteBundles (/* ids */) {},
+
+  deleteItemFromBundle (/* itemId, bundleId */) {},
+
+  deleteItemsFromBundle (/* itemIds, bundleId */) {},
+
+  getBundle (/* id */) {},
+
+  getBundles (/* ids */) {},
+
+  getItemFromBundle (/* itemId, [bundleId] */) {},
+
+  getItemsFromBundle (/* itemIds, [bundleId] */) {},
+
+  removeBundleFromProject (/* bundleId, projectId */) {},
+
+  removeBundlesFromProject (/* bundleIds, projectId */) {},
+
+  upsertBundle (/* bundle */) {},
+
+  upsertBundles (/* bundles */) {},
+
+
+  /**
+   * language methods
+   * @namespace languages
+   */
+  addLanguage (/* language */) {},
+
+  addLanguageToProject (/* languageId, projectId */) {},
+
+  addLanguagesToProject (/* languageId, projectId */) {},
+
+  getLanguage (/* id */) {},
+
+  getLanguages (/* ids */) {},
+
+  removeLanguageFromProject (/* languageId, projectId */) {},
+
+  removeLanguagesFromProject (/* languageIds, projectId */) {},
+
+
+  /**
+   * lexicon methods
+   * @namespace lexicons
+   */
+  addLexiconToProject (/* lexicon, projectId */) {},
+
+  addLexiconsToProject (/* lexicons, projectId */) {},
+
+  deleteLexicon (/* id */) {},
+
+  deleteLexicons (/* ids */) {},
+
+  deleteLexiconEntry (/* entryId, [lexiconId] */) {},
+
+  deleteLexiconEntries (/* entryIds, [lexiconId] */) {},
+
+  getLexicon (/* id */) {},
+
+  getLexicons (/* ids */) {},
+
+  getLexiconEntry (/* entryId, [lexiconId] */) {},
+
+  getLexiconEntries (/* entryIds, [lexiconId] */) {},
+
+  removeLexiconFromProject (/* lexiconId, projectId */) {},
+
+  removeLexiconsFromProject (/* lexicons, projectId */) {},
+
+  upsertLexicon (/* lexicon */) {},
+
+  upsertLexicons (/* lexicons */) {},
+
+  upsertLexiconEntry (/* entry, lexiconId */) {},
+
+  upsertLexiconEntries (/* entries, lexiconId */) {},
+
+
+  /**
+   * location methods
+   * @namespace locations
+   */
+  addLocationToProject (/* locationId, projectId */) {},
+
+  addLocationsToProject (/* locationIds, projectId */) {},
+
+  deleteLocation (/* id */) {},
+
+  deleteLocations (/* ids */) {},
+
+  getLocation (/* id */) {},
+
+  getLocations (/* ids */) {},
+
+  removeLocationFromProject (/* locationId, projectId */) {},
+
+  removeLocationsFromProject (/* locationIds, projectId */) {},
+
+  upsertLocation (/* location */) {},
+
+  upsertLocations (/* locations */) {},
+
+
+  /**
+   * media methods
+   * @namespace media
+   */
+  addMediaItemToBundle (/* mediaId, bundleId */) {},
+
+  addMediaItemsToBundle (/* mediaIds, bundleId */) {},
+
+  addMediaItemToProject (/* mediaId, projectId */) {},
+
+  addMediaItemsToProject (/* mediaIds, projectId */) {},
+
+  addMediaItemToText (/* mediaId, projectId */) {},
+
+  addMediaItemsToText (/* mediaIds, projectId */) {},
+
+  deleteMediaItem (/* id */) {},
+
+  deleteMediaItems (/* ids */) {},
+
+  getMediaItem (/* id */) {},
+
+  getMediaItems (/* ids */) {},
+
+  removeMediaItemFromBundle (/* mediaId, bundleId */) {},
+
+  removeMediaItemsFromBundle (/* mediaIds, bundleId */) {},
+
+  removeMediaItemFromProject (/* mediaId, projectId */) {},
+
+  removeMediaItemsFromProject (/* mediaIds, projectId */) {},
+
+  removeMediaItemFromText (/* mediaId, textId */) {},
+
+  removeMediaItemsFromText (/* mediaIds, textId */) {},
+
+  upsertMediaItem (/* mediaItem */) {},
+
+  upsertMediaItems (/* mediaItems */) {},
+
+
+  /**
+   * permission methods
+   * @namespace permissions
+   */
+  addPermission (/* user, resource, permissionType */) {},
+
+  addPermissions (/* users, resources, permissionType */) {},
+
+  makePrivate (/* resourceId, options: revokeExisting=false */) {},
+
+  makePublic (/* resourceId */) {},
+
+  removePermission (/* user, resource, permissionType */) {},
+
+  removePermissions (/* users, resources, permissionType */) {},
+
+
+  /**
+   * person methods
+   * @namespace persons
+   */
+  addPersonToProject (/* personId, projectId */) {},
+
+  addPersonsToProject (/* personIds, perojectId */) {},
+
+  deletePerson (/* id */) {},
+
+  deletePersons (/* ids */) {},
+
+  getPerson (/* id */) {},
+
+  getPersons (/* ids */) {},
+
+  removePersonFromProject (/* personId, projectId */) {},
+
+  removePersonsFromProject (/* personIds, projectId */) {},
+
+  upsertPerson (/* person */) {},
+
+  upsertPersons (/* persons */) {},
+
+
+  /**
+   * project methods
+   * @namespace projects
+   */
+  deleteProject (/* id */) {},
+
+  deleteProjects (/* ids */) {},
+
+  getProject (/* id */) {},
+
+  getProjects (/* ids */) {},
+
+  upsertProject (/* project */) {},
+
+  upsertProjects (/* projects */) {},
+
+
+  /**
+   * text methods
+   * @namespace texts
+   */
+  addTextToBundle (/* textId, bundleId */) {},
+
+  addTextsToBundle (/* textIds, bundleId */) {},
+
+  addTextToProject (/* textId, projectId */) {},
+
+  addTextsToProject (/* textIds, projectId */) {},
+
+  deleteText (/* id */) {},
+
+  deleteTexts (/* ids */) {},
+
+  getPhrase (/* phraseId, [textId] */) {},
+
+  getPhrases (/* phraseIds, [textId] */) {},
+
+  getText (/* id */) {},
+
+  getTexts (/* ids */) {},
+
+  removeTextFromBundle (/* textId, bundleId */) {},
+
+  removeTextsFromBundle (/* textIds, bunldeIds */) {},
+
+  removeTextFromProject (/* textId, projectId */) {},
+
+  removeTextsFromProject (/* textIds, projectId */) {},
+
+  upsertText (/* text */) {},
+
+  upsertTexts (/* texts */) {},
+
 };
