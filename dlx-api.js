@@ -29,10 +29,6 @@ var dlxApi = {
 
   deleteBundles (/* ids */) {},
 
-  deleteItemFromBundle (/* itemId, bundleId */) {},
-
-  deleteItemsFromBundle (/* itemIds, bundleId */) {},
-
   getBundle (/* id */) {},
 
   getBundles (/* ids */) {},
@@ -44,6 +40,10 @@ var dlxApi = {
   removeBundleFromProject (/* bundleId, projectId */) {},
 
   removeBundlesFromProject (/* bundleIds, projectId */) {},
+  
+  removeItemFromBundle (/* itemId, bundleId */) {},
+
+  removeItemsFromBundle (/* itemIds, bundleId */) {},
 
   upsertBundle (/* bundle */) {},
 
