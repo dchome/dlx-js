@@ -1,270 +1,333 @@
-var dlxApi = {
+var DLX = function(config){
+
+  if (!config){
+    throw new Error('Please pass a config object as an argument');
+  }
+
+  if (!config.clientId){
+    throw new Error('Please provide the client ID for your application in the config object');
+  }
+
+  var accessToken;
+
+  var buildUrl = function (url, parameters){
+    var qs = "";
+    Object.keys(parameters).forEach(function(key) {
+      var value = parameters[key];
+      qs += encodeURIComponent(key) + "=" + encodeURIComponent(value) + "&";
+    });
+    if (qs.length > 0){
+      qs = qs.substring(0, qs.length-1); //chop off last "&"
+      url = url + "?" + qs;
+    }
+    return url;
+  };
 
-  /**
-   * settings
-   * @namespace settings
-   */
-  accessToken: '',
+  var checkForRedirect = function (){
+    //check if redirectUri is in LS
+    //if so, get parameters from url and clear redirectUri from LS
+  };
 
-  /**
-   * general API methods
-   * @namespace general
-   */
-  authenticate (/* args */) {},
+  var getRandom = function (){
+  var result = '';
+  for (var i = 0; i > 5; ++i){
+    parameters.state += '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ'[Math.floor(Math.random() * 52)];
+  }
+  return result;
+};
 
+  var methods = {
 
-  /**
-   * bundle methods
-   * @namespace bundles
-   */
-  addBundleToProject (/* bundleId, projectId */) {},
+    /**
+     * general API methods
+     * @namespace general
+     */
+    authenticate (redirectUri, state) {
+      var getRandom = function () {
+        var result = '';
+        for (var i = 0; i > 5; ++i){
+          result += '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ'[Math.floor(Math.random() * 52)];
+        }
+        return result;
+      };
+      var parameters = {
+        client_id: config.clientId,
+        redirect_uri: redirectUri,
+        response_type: 'token',
+      };
+      parameters.state = state ? state : getRandom();
+      var getUrl = buildUrl('https://dlx-dev.azurewebsites.net/auth', parameters);
 
-  addBundlesToProject (/* bundleIds, projectId */) {},
+      var req = new XMLHttpRequest();
+      req.onreadystatechange = function(){
+        console.log(req.response); //remove this later
+        if (req.readyState === 4 && req.status !== 200){
+          //check response to fix error
+          //var response = JSON.parse(req.response);
+          console.log(req.response); //remove this later
+        }
+      };
+      req.open("GET", getUrl);
+      req.send();
+    },
 
-  addItemToBundle (/* itemId, bundleId */) {},
+    /**
+     * bundle methods
+     * @namespace bundles
+     */
+    addBundleToProject (/* bundleId, projectId */) {},
 
-  addItemsToBundle (/* itemIds, bundleId */) {},
+    addBundlesToProject (/* bundleIds, projectId */) {},
 
-  deleteBundle (/* id */) {},
+    addItemToBundle (/* itemId, bundleId */) {},
 
-  deleteBundles (/* ids */) {},
+    addItemsToBundle (/* itemIds, bundleId */) {},
 
-  deleteItemFromBundle (/* itemId, bundleId */) {},
+    deleteBundle (/* id */) {},
 
-  deleteItemsFromBundle (/* itemIds, bundleId */) {},
+    deleteBundles (/* ids */) {},
 
-  getBundle (/* id */) {},
+    deleteItemFromBundle (/* itemId, bundleId */) {},
 
-  getBundles (/* ids */) {},
+    deleteItemsFromBundle (/* itemIds, bundleId */) {},
 
-  getItemFromBundle (/* itemId, [bundleId] */) {},
+    getBundle (/* id */) {},
 
-  getItemsFromBundle (/* itemIds, [bundleId] */) {},
+    getBundles (/* ids */) {},
 
-  removeBundleFromProject (/* bundleId, projectId */) {},
+    getItemFromBundle (/* itemId, [bundleId] */) {},
 
-  removeBundlesFromProject (/* bundleIds, projectId */) {},
+    getItemsFromBundle (/* itemIds, [bundleId] */) {},
 
-  upsertBundle (/* bundle */) {},
+    removeBundleFromProject (/* bundleId, projectId */) {},
 
-  upsertBundles (/* bundles */) {},
+    removeBundlesFromProject (/* bundleIds, projectId */) {},
 
+    upsertBundle (/* bundle */) {},
 
-  /**
-   * language methods
-   * @namespace languages
-   */
-  addLanguage (/* language */) {},
+    upsertBundles (/* bundles */) {},
 
-  addLanguageToProject (/* languageId, projectId */) {},
 
-  addLanguagesToProject (/* languageId, projectId */) {},
+    /**
+     * language methods
+     * @namespace languages
+     */
+    addLanguage (/* language */) {},
 
-  getLanguage (/* id */) {},
+    addLanguageToProject (/* languageId, projectId */) {},
 
-  getLanguages (/* ids */) {},
+    addLanguagesToProject (/* languageId, projectId */) {},
 
-  removeLanguageFromProject (/* languageId, projectId */) {},
+    getLanguage (/* id */) {},
 
-  removeLanguagesFromProject (/* languageIds, projectId */) {},
+    getLanguages (/* ids */) {},
 
+    removeLanguageFromProject (/* languageId, projectId */) {},
 
-  /**
-   * lexicon methods
-   * @namespace lexicons
-   */
-  addLexiconToProject (/* lexicon, projectId */) {},
+    removeLanguagesFromProject (/* languageIds, projectId */) {},
 
-  addLexiconsToProject (/* lexicons, projectId */) {},
 
-  deleteLexicon (/* id */) {},
+    /**
+     * lexicon methods
+     * @namespace lexicons
+     */
+    addLexiconToProject (/* lexicon, projectId */) {},
 
-  deleteLexicons (/* ids */) {},
+    addLexiconsToProject (/* lexicons, projectId */) {},
 
-  deleteLexiconEntry (/* entryId, [lexiconId] */) {},
+    deleteLexicon (/* id */) {},
 
-  deleteLexiconEntries (/* entryIds, [lexiconId] */) {},
+    deleteLexicons (/* ids */) {},
 
-  getLexicon (/* id */) {},
+    deleteLexiconEntry (/* entryId, [lexiconId] */) {},
 
-  getLexicons (/* ids */) {},
+    deleteLexiconEntries (/* entryIds, [lexiconId] */) {},
 
-  getLexiconEntry (/* entryId, [lexiconId] */) {},
+    getLexicon (/* id */) {},
 
-  getLexiconEntries (/* entryIds, [lexiconId] */) {},
+    getLexicons (/* ids */) {},
 
-  removeLexiconFromProject (/* lexiconId, projectId */) {},
+    getLexiconEntry (/* entryId, [lexiconId] */) {},
 
-  removeLexiconsFromProject (/* lexicons, projectId */) {},
+    getLexiconEntries (/* entryIds, [lexiconId] */) {},
 
-  upsertLexicon (/* lexicon */) {},
+    removeLexiconFromProject (/* lexiconId, projectId */) {},
 
-  upsertLexicons (/* lexicons */) {},
+    removeLexiconsFromProject (/* lexicons, projectId */) {},
 
-  upsertLexiconEntry (/* entry, lexiconId */) {},
+    upsertLexicon (/* lexicon */) {},
 
-  upsertLexiconEntries (/* entries, lexiconId */) {},
+    upsertLexicons (/* lexicons */) {},
 
+    upsertLexiconEntry (/* entry, lexiconId */) {},
 
-  /**
-   * location methods
-   * @namespace locations
-   */
-  addLocationToProject (/* locationId, projectId */) {},
+    upsertLexiconEntries (/* entries, lexiconId */) {},
 
-  addLocationsToProject (/* locationIds, projectId */) {},
 
-  deleteLocation (/* id */) {},
+    /**
+     * location methods
+     * @namespace locations
+     */
+    addLocationToProject (/* locationId, projectId */) {},
 
-  deleteLocations (/* ids */) {},
+    addLocationsToProject (/* locationIds, projectId */) {},
 
-  getLocation (/* id */) {},
+    deleteLocation (/* id */) {},
 
-  getLocations (/* ids */) {},
+    deleteLocations (/* ids */) {},
 
-  removeLocationFromProject (/* locationId, projectId */) {},
+    getLocation (/* id */) {},
 
-  removeLocationsFromProject (/* locationIds, projectId */) {},
+    getLocations (/* ids */) {},
 
-  upsertLocation (/* location */) {},
+    removeLocationFromProject (/* locationId, projectId */) {},
 
-  upsertLocations (/* locations */) {},
+    removeLocationsFromProject (/* locationIds, projectId */) {},
 
+    upsertLocation (/* location */) {},
 
-  /**
-   * media methods
-   * @namespace media
-   */
-  addMediaItemToBundle (/* mediaId, bundleId */) {},
+    upsertLocations (/* locations */) {},
 
-  addMediaItemsToBundle (/* mediaIds, bundleId */) {},
 
-  addMediaItemToProject (/* mediaId, projectId */) {},
+    /**
+     * media methods
+     * @namespace media
+     */
+    addMediaItemToBundle (/* mediaId, bundleId */) {},
 
-  addMediaItemsToProject (/* mediaIds, projectId */) {},
+    addMediaItemsToBundle (/* mediaIds, bundleId */) {},
 
-  addMediaItemToText (/* mediaId, projectId */) {},
+    addMediaItemToProject (/* mediaId, projectId */) {},
 
-  addMediaItemsToText (/* mediaIds, projectId */) {},
+    addMediaItemsToProject (/* mediaIds, projectId */) {},
 
-  deleteMediaItem (/* id */) {},
+    addMediaItemToText (/* mediaId, projectId */) {},
 
-  deleteMediaItems (/* ids */) {},
+    addMediaItemsToText (/* mediaIds, projectId */) {},
 
-  getMediaItem (/* id */) {},
+    deleteMediaItem (/* id */) {},
 
-  getMediaItems (/* ids */) {},
+    deleteMediaItems (/* ids */) {},
 
-  removeMediaItemFromBundle (/* mediaId, bundleId */) {},
+    getMediaItem (/* id */) {},
 
-  removeMediaItemsFromBundle (/* mediaIds, bundleId */) {},
+    getMediaItems (/* ids */) {},
 
-  removeMediaItemFromProject (/* mediaId, projectId */) {},
+    removeMediaItemFromBundle (/* mediaId, bundleId */) {},
 
-  removeMediaItemsFromProject (/* mediaIds, projectId */) {},
+    removeMediaItemsFromBundle (/* mediaIds, bundleId */) {},
 
-  removeMediaItemFromText (/* mediaId, textId */) {},
+    removeMediaItemFromProject (/* mediaId, projectId */) {},
 
-  removeMediaItemsFromText (/* mediaIds, textId */) {},
+    removeMediaItemsFromProject (/* mediaIds, projectId */) {},
 
-  upsertMediaItem (/* mediaItem */) {},
+    removeMediaItemFromText (/* mediaId, textId */) {},
 
-  upsertMediaItems (/* mediaItems */) {},
+    removeMediaItemsFromText (/* mediaIds, textId */) {},
 
+    upsertMediaItem (/* mediaItem */) {},
 
-  /**
-   * permission methods
-   * @namespace permissions
-   */
-  addPermission (/* user, resource, permissionType */) {},
+    upsertMediaItems (/* mediaItems */) {},
 
-  addPermissions (/* users, resources, permissionType */) {},
 
-  makePrivate (/* resourceId, options: revokeExisting=false */) {},
+    /**
+     * permission methods
+     * @namespace permissions
+     */
+    addPermission (/* user, resource, permissionType */) {},
 
-  makePublic (/* resourceId */) {},
+    addPermissions (/* users, resources, permissionType */) {},
 
-  removePermission (/* user, resource, permissionType */) {},
+    makePrivate (/* resourceId, options: revokeExisting=false */) {},
 
-  removePermissions (/* users, resources, permissionType */) {},
+    makePublic (/* resourceId */) {},
 
+    removePermission (/* user, resource, permissionType */) {},
 
-  /**
-   * person methods
-   * @namespace persons
-   */
-  addPersonToProject (/* personId, projectId */) {},
+    removePermissions (/* users, resources, permissionType */) {},
 
-  addPersonsToProject (/* personIds, perojectId */) {},
 
-  deletePerson (/* id */) {},
+    /**
+     * person methods
+     * @namespace persons
+     */
+    addPersonToProject (/* personId, projectId */) {},
 
-  deletePersons (/* ids */) {},
+    addPersonsToProject (/* personIds, perojectId */) {},
 
-  getPerson (/* id */) {},
+    deletePerson (/* id */) {},
 
-  getPersons (/* ids */) {},
+    deletePersons (/* ids */) {},
 
-  removePersonFromProject (/* personId, projectId */) {},
+    getPerson (/* id */) {},
 
-  removePersonsFromProject (/* personIds, projectId */) {},
+    getPersons (/* ids */) {},
 
-  upsertPerson (/* person */) {},
+    removePersonFromProject (/* personId, projectId */) {},
 
-  upsertPersons (/* persons */) {},
+    removePersonsFromProject (/* personIds, projectId */) {},
 
+    upsertPerson (/* person */) {},
 
-  /**
-   * project methods
-   * @namespace projects
-   */
-  deleteProject (/* id */) {},
+    upsertPersons (/* persons */) {},
 
-  deleteProjects (/* ids */) {},
 
-  getProject (/* id */) {},
+    /**
+     * project methods
+     * @namespace projects
+     */
+    deleteProject (/* id */) {},
 
-  getProjects (/* ids */) {},
+    deleteProjects (/* ids */) {},
 
-  upsertProject (/* project */) {},
+    getProject (/* id */) {},
 
-  upsertProjects (/* projects */) {},
+    getProjects (/* ids */) {},
 
+    upsertProject (/* project */) {},
 
-  /**
-   * text methods
-   * @namespace texts
-   */
-  addTextToBundle (/* textId, bundleId */) {},
+    upsertProjects (/* projects */) {},
 
-  addTextsToBundle (/* textIds, bundleId */) {},
 
-  addTextToProject (/* textId, projectId */) {},
+    /**
+     * text methods
+     * @namespace texts
+     */
+    addTextToBundle (/* textId, bundleId */) {},
 
-  addTextsToProject (/* textIds, projectId */) {},
+    addTextsToBundle (/* textIds, bundleId */) {},
 
-  deleteText (/* id */) {},
+    addTextToProject (/* textId, projectId */) {},
 
-  deleteTexts (/* ids */) {},
+    addTextsToProject (/* textIds, projectId */) {},
 
-  getPhrase (/* phraseId, [textId] */) {},
+    deleteText (/* id */) {},
 
-  getPhrases (/* phraseIds, [textId] */) {},
+    deleteTexts (/* ids */) {},
 
-  getText (/* id */) {},
+    getPhrase (/* phraseId, [textId] */) {},
 
-  getTexts (/* ids */) {},
+    getPhrases (/* phraseIds, [textId] */) {},
 
-  removeTextFromBundle (/* textId, bundleId */) {},
+    getText (/* id */) {},
 
-  removeTextsFromBundle (/* textIds, bunldeIds */) {},
+    getTexts (/* ids */) {},
 
-  removeTextFromProject (/* textId, projectId */) {},
+    removeTextFromBundle (/* textId, bundleId */) {},
 
-  removeTextsFromProject (/* textIds, projectId */) {},
+    removeTextsFromBundle (/* textIds, bunldeIds */) {},
 
-  upsertText (/* text */) {},
+    removeTextFromProject (/* textId, projectId */) {},
 
-  upsertTexts (/* texts */) {},
+    removeTextsFromProject (/* textIds, projectId */) {},
 
+    upsertText (/* text */) {},
+
+    upsertTexts (/* texts */) {}
+  };
+
+  window.addEventListener('load', checkForRedirect);
+
+  return methods;
+  //return this;
 };
